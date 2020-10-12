@@ -5,7 +5,7 @@ from gi.repository import Gtk
 
 class AppWindow(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Hello, World Example")
+        Gtk.Window.__init__(self, title="Anagramster")
 
         grid = Gtk.Grid()
         self.add(grid)
