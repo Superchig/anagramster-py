@@ -15,18 +15,25 @@ class AppWindow(Gtk.Window):
         self.anagram_view = Gtk.Entry()
         self.anagram_view.connect("changed", self.entry_changed)
         self.output_label = Gtk.Label(label="Output.")
+        self.ignore_case = Gtk.CheckButton(label="Ignore Case")
+        self.ignore_case.connect("clicked", self.entry_changed)
 
         grid.add(self.phrase_view)
         grid.attach(self.anagram_view, 1, 0, 1, 1)
+        grid.attach(self.ignore_case, 2, 0, 1, 1)
         grid.attach(self.output_label, 0, 1, 2, 1)
 
-    def on_button_clicked(self, widget):
-        print("Hello, world!")
-
-    def entry_changed(self, entry):
+    def entry_changed(self, widget):
         markup_text = ""
-        anagrammed = list(self.anagram_view.get_text())
-        for ch in self.phrase_view.get_text():
+
+        anagram_text = self.anagram_view.get_text()
+        phrase = self.phrase_view.get_text()
+        if self.ignore_case.get_active():
+            anagram_text = anagram_text.lower()
+            phrase = phrase.lower()
+        anagrammed = list(anagram_text)
+
+        for ch in phrase:
             if ch in anagrammed:
                 markup_text += ch
                 anagrammed.remove(ch)
