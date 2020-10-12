@@ -15,7 +15,7 @@ class AppWindow(Gtk.Window):
         self.anagram_view = Gtk.Entry()
         self.anagram_view.connect("changed", self.entry_changed)
         self.output_label = Gtk.Label(label="Output.")
-        self.ignore_case = Gtk.CheckButton(label="Ignore Case")
+        self.ignore_case = Gtk.CheckButton(label="Ignore Case", active=True)
         self.ignore_case.connect("clicked", self.entry_changed)
 
         grid.add(self.phrase_view)
